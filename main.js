@@ -89,3 +89,35 @@ window.myLineChart = new Chart(ctx).Line(salesData2, {
   scaleStartValue: 0,
   responsive: true,
 });
+
+var ctx = document.getElementById("salesData3").getContext("2d");
+window.myLineChart = new Chart(ctx).Line(salesData, {
+  pointDotRadius: 6,
+  pointDotStrokeWidth: 2,
+  datasetStrokeWidth: 3,
+  scaleShowVerticalLines: false,
+  scaleGridLineWidth: 2,
+  scaleShowGridLines: true,
+  scaleGridLineColor: "rgba(225, 255, 255, 0.02)",
+  scaleOverride: true,
+  scaleSteps: 11,
+  scaleStepWidth: 500,
+  scaleStartValue: 0,
+  responsive: true,
+});
+
+var ctx = document.getElementById("salesData4").getContext("2d");
+window.myLineChart = new Chart(ctx).Line(salesData2, {
+  pointDotRadius: 6,
+  pointDotStrokeWidth: 2,
+  datasetStrokeWidth: 3,
+  scaleShowVerticalLines: false,
+  scaleGridLineWidth: 2,
+  scaleShowGridLines: true,
+  scaleGridLineColor: "rgba(225, 255, 255, 0.02)",
+  scaleOverride: true,
+  scaleSteps: 11,
+  scaleStepWidth: 500,
+  scaleStartValue: 0,
+  responsive: true,
+});
