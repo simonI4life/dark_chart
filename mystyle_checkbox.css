@@ -1,0 +1,89 @@
+.box > .title
+{
+  background-color: rgb(205, 255, 209);
+  color: rgb(35, 110, 29);
+  border: 1px solid rgb(74, 197, 63);
+
+  padding: 5px 10px;
+  box-sizing: border-box;
+  width: 200px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+.box > .title > h3 
+{
+  margin: 0;
+  font-size: 23px;
+  font-weight: 300;
+
+}
+
+
+.box > .title:hover{
+  cursor: pointer;
+  /* background-color: rgb(158, 209, 162); */
+
+}
+
+
+.cb
+{
+  background-color: rgb(219, 247, 214);
+  border: 1px solid rgb(140, 230, 132);
+  padding: 2px;
+  display: flex;
+  flex-direction: column;
+  width: 200px; 
+  box-sizing: border-box;
+  position: absolute;
+  font-size: 20px;
+  color: rgb(7, 87, 18);
+  cursor: pointer;
+  font-weight: 400;
+
+
+}
+
+.cb > .cb_n
+{
+  margin: 2px;
+  text-align: center;
+  background-color: rgb(197, 241, 195);
+  color: rgb(158, 219, 155);
+  border: 1px solid rgb(140, 230, 132);
+}
+
+
+.cb > .cb_n:hover
+{
+  color: rgb(98, 201, 92);
+  background-color: rgb(154, 228, 150);
+}
+
+.cb > .active
+{
+  color: rgb(7, 134, 0);
+  background-color: rgba(105, 253, 105, 0.418);
+  border: 1px solid rgb(140, 230, 132);
+
+}
+
+.cb > .active:hover
+{
+  color: rgb(7, 134, 0);
+  background-color: rgba(105, 253, 105, 0.418);
+  border: 1px solid rgb(140, 230, 132);
+
+}
+
+
+.hide
+{
+  display: none;
+  color: rgb(206, 173, 82);
+} 
+

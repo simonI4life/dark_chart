@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+
+  <body>
+    <!-- https://stackoverflow.com/questions/17714705/how-to-use-checkbox-inside-select-option -->
+
+    <form>
+      <div class="multiselect">
+        <div class="selectBox" onclick="showCheckboxes()">
+          <select>
+            <option>Selecciona una opcion</option>
+          </select>
+          <div class="overSelect"></div>
+        </div>
+        <div id="checkboxes" class="hide">
+          <label for="c1"
+            ><input type="checkbox" id="c1" />Primer checkbox</label
+          >
+          <label for="c2"
+            ><input type="checkbox" id="c2" />Segundo checkbox</label
+          >
+          <label for="c3"
+            ><input type="checkbox" id="c3" />Tercero checkbox</label
+          >
+          <label for="c4"
+            ><input type="checkbox" id="c4" />Quarto checkbox</label
+          >
+          <label for="c5"
+            ><input type="checkbox" id="c5" />Quinto checkbox</label
+          >
+          <label for="c6"
+            ><input type="checkbox" id="c6" />Sexto checkbox</label
+          >
+          <label for="c7"
+            ><input type="checkbox" id="c7" />Septimo checkbox</label
+          >
+          <label for="c8"
+            ><input type="checkbox" id="c8" />Octavo checkbox</label
+          >
+          <label for="c9"
+            ><input type="checkbox" id="c9" />Noveno checkbox</label
+          >
+          <label for="c10"
+            ><input type="checkbox" id="c10" />Decimo checkbox</label
+          >
+        </div>
+      </div>
+      hola
+    </form>
+
+    <script>
+      function showCheckboxes() {
+        var checkboxes = document.getElementById("checkboxes");
+        if (checkboxes.classList.contains("hide")) {
+          checkboxes.classList.remove("hide");
+        } else {
+          checkboxes.classList.add("hide");
+        }
+      }
+    </script>
+  </body>
+</html>
