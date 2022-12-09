@@ -1,123 +1,107 @@
 // https://dribbble.com/shots/1821178-Sales-Report?list=buckets&offset=0
 
-// Line Chart
-var salesData = {
-  labels: ["0", "1", "2", "3", "4", "5", "6"],
-  datasets: [
-    {
-      label: "Front",
-      fillColor: "rgba(195, 40, 96, 0.1)",
-      strokeColor: "rgba(195, 40, 96, 1)",
-      pointColor: "rgba(195, 40, 96, 1)",
-      pointStrokeColor: "#202b33",
-      pointHighlightStroke: "rgba(225,225,225,0.9)",
-      data: [5000, 3000, 2500, 4500, 2500, 3400, 3000],
+function createChart(id, data, options) {
+  var ctx = document.getElementById(id).getContext("2d");
+  return new Chart(ctx, { type: "line", data: data, options: options });
+}
+
+const options = {
+  plugins: {
+    legend: {
+      display: false,
     },
-    {
-      label: "Middle",
-      fillColor: "rgba(255, 172, 100, 0.1)",
-      strokeColor: "rgba(255, 172, 100, 1)",
-      pointColor: "rgba(255, 172, 100, 1)",
-      pointStrokeColor: "#202b33",
-      pointHighlightStroke: "rgba(225,225,225,0.9)",
-      data: [1900, 1700, 2100, 3600, 2200, 2500, 2000],
+  },
+  scales: {
+    y: {
+      grid: {
+        color: "#e1e1e123",
+      },
+      suggestedMin: 0,
     },
-    {
-      label: "Back",
-      fillColor: "rgba(19, 71, 34, 0.2)",
-      strokeColor: "rgba(88, 188, 116, 1)",
-      pointColor: "rgba(88, 188, 116, 1)",
-      pointStrokeColor: "#202b33",
-      pointHighlightStroke: "rgba(225,225,225,0.9)",
-      data: [1000, 1400, 1100, 2600, 2000, 900, 1400],
+    x: {
+      grid: {
+        color: "#e1e1e123",
+      },
     },
-  ],
+  },
 };
 
-var salesData2 = {
-  labels: ["0", "1", "2", "3", "4", "5", "6"],
-  datasets: [
-    {
-      label: "Back",
-      fillColor: "rgba(93, 61, 119, 0.2)",
-      strokeColor: "rgba(151, 88, 188, 1)",
-      pointColor: "rgba(151, 88, 188, 1)",
-      pointStrokeColor: "#202b33",
-      pointHighlightStroke: "rgba(225,225,225,0.9)",
-      data: [1400, 2100, 1241, 5000, 3000, 1200, 0],
-    },
-    {
-      label: "Back",
-      fillColor: "rgba(61, 91, 119, 0.2)",
-      strokeColor: "rgba(88, 140, 188, 1)",
-      pointColor: "rgba(88, 140, 188, 1)",
-      pointStrokeColor: "#202b33",
-      pointHighlightStroke: "rgba(225,225,225,0.9)",
-      data: [1200, 1100, 2150, 2600, 5400, 1900, 5400],
-    },
+function createData(jsonData, colors) {
+  // Create an empty salesData object
+  let salesData = {
+    labels: jsonData.label,
+    datasets: [],
+  };
+
+  // Iterate over the array of objects in the "data" property of the object
+  for (let i = 0; i < jsonData.data.length; i++) {
+    // Add the y value as a data point in the first dataset
+    salesData.datasets.push({
+      fill: true,
+      data: jsonData.data[i],
+      backgroundColor: colors[i].backgroundColor,
+      borderColor: colors[i].borderColor,
+      pointBackgroundColor: colors[i].pointBackgroundColor,
+      tension: 0.2,
+    });
+  }
+
+  return salesData;
+}
+
+const sourceData1 = {
+  data: [
+    [20, 21, 12, 68, 73, 35, 7, 95, 62, 87, 84],
+    [22, 18, 23, 58, 71, 15, 27, 62, 87, 84, 23],
   ],
+  label: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
 };
 
-var ctx = document.getElementById("salesData").getContext("2d");
-window.myLineChart = new Chart(ctx).Line(salesData, {
-  pointDotRadius: 6,
-  pointDotStrokeWidth: 2,
-  datasetStrokeWidth: 3,
-  scaleShowVerticalLines: false,
-  scaleGridLineWidth: 2,
-  scaleShowGridLines: true,
-  scaleGridLineColor: "rgba(225, 255, 255, 0.02)",
-  scaleOverride: true,
-  scaleSteps: 11,
-  scaleStepWidth: 500,
-  scaleStartValue: 0,
-  responsive: true,
-});
+const sourceData2 = {
+  data: [
+    [7, 8, 6, 9, 5, 2, 10, 1, 4, 3],
+    [10, 4, 5, 6, 7, 8, 9, 1, 2, 3],
+    [8, 1, 3, 5, 7, 9, 2, 4, 6, 10],
+  ],
+  label: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+};
 
-var ctx = document.getElementById("salesData2").getContext("2d");
-window.myLineChart = new Chart(ctx).Line(salesData2, {
-  pointDotRadius: 6,
-  pointDotStrokeWidth: 2,
-  datasetStrokeWidth: 3,
-  scaleShowVerticalLines: false,
-  scaleGridLineWidth: 2,
-  scaleShowGridLines: true,
-  scaleGridLineColor: "rgba(225, 255, 255, 0.02)",
-  scaleOverride: true,
-  scaleSteps: 11,
-  scaleStepWidth: 500,
-  scaleStartValue: 0,
-  responsive: true,
-});
+const sourceData3 = {
+  data: [
+    [43, 22, 16, 58, 71, 15, 27, 62, 87, 84, 23],
+    [60, 15, 25, 35, 65, 75, 85, 95, 40, 20, 10],
+  ],
+  label: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+};
 
-var ctx = document.getElementById("salesData3").getContext("2d");
-window.myLineChart = new Chart(ctx).Line(salesData, {
-  pointDotRadius: 6,
-  pointDotStrokeWidth: 2,
-  datasetStrokeWidth: 3,
-  scaleShowVerticalLines: false,
-  scaleGridLineWidth: 2,
-  scaleShowGridLines: true,
-  scaleGridLineColor: "rgba(225, 255, 255, 0.02)",
-  scaleOverride: true,
-  scaleSteps: 11,
-  scaleStepWidth: 500,
-  scaleStartValue: 0,
-  responsive: true,
-});
+const sourceData4 = {
+  data: [
+    [20, 30, 40, 50, 32, 70, 80, 90, 21, 1],
+    [60, 15, 25, 35, 65, 75, 85, 95, 40, 20, 10],
+    [7, 81, 62, 93, 35, 22, 10, 1, 4, 3],
+    [10, 14, 53, 6, 27, 8, 9, 1, 2, 3],
+  ],
+  label: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+};
 
-var ctx = document.getElementById("salesData4").getContext("2d");
-window.myLineChart = new Chart(ctx).Line(salesData2, {
-  pointDotRadius: 6,
-  pointDotStrokeWidth: 2,
-  datasetStrokeWidth: 3,
-  scaleShowVerticalLines: false,
-  scaleGridLineWidth: 2,
-  scaleShowGridLines: true,
-  scaleGridLineColor: "rgba(225, 255, 255, 0.02)",
-  scaleOverride: true,
-  scaleSteps: 11,
-  scaleStepWidth: 500,
-  scaleStartValue: 0,
-  responsive: true,
-});
+// Propuesta
+
+var chart0 = createChart(
+  "salesData",
+  createData(sourceData2, colorArray),
+  options
+);
+
+var chart1 = createChart(
+  "salesData2",
+  createData(sourceData3, colorArray),
+  options
+);
+
+var chart2 = createChart("SD3", createData(sourceData1, colorArray1), options);
+
+var chart3 = createChart(
+  "salesData4",
+  createData(sourceData4, colorArray2),
+  options
+);
