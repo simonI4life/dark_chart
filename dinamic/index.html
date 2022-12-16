@@ -13,13 +13,28 @@
     <div id="container">
       <div id="content">
         <div class="block">
-          <div class="actions">
-            <a href="#" onclick="action(1)">Año</a>
-            <a href="#" onclick="action(2)">Mes</a>
+          <div class="top-chart">
+            <div class="actions">
+              <a href="#" onclick="setMode(0)">Total</a>
+              <a href="#" onclick="setMode(1)">Año</a>
+              <a href="#" onclick="setMode(2)">1/2 Año</a>
+              <a href="#" onclick="setMode(3)">Mes</a>
+            </div>
+            <div id="title"><h3>Tabla</h3></div>
+            <div class="actions" style="justify-self: end">
+              <a href="#" onclick="action(3)">
+                <img href="#" src="logo1.svg" />
+              </a>
+              <a href="#" onclick="action(4)"> <img src="logo2.svg" /></a>
+            </div>
           </div>
-          <div id="title"><h3>PROGRESO SEMANA 1</h3></div>
+
           <div class="mainChart">
             <canvas id="chart"></canvas>
+          </div>
+
+          <div class="mainChart">
+            <canvas id="chart1"></canvas>
           </div>
         </div>
       </div>

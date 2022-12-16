@@ -45,10 +45,8 @@ body {
   gap: 15px;
 
 }
-#titleBar {
-  height: 36px;
-  margin-bottom: 30px;
-}
+
+
 
 
 /* Icons */
@@ -159,7 +157,7 @@ h3 {
 #title > h3 
 {
   font-weight: 300;
-  font-size: 20px;
+  font-size: 25px;
 }
 
 
@@ -193,4 +191,17 @@ h3 {
   padding: 3px 7px;
   font-size: 22px;
   text-decoration: none;
+}
+
+
+.actions  img
+{
+  width: 17px;
+}
+
+.top-chart
+{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  margin-bottom: 20px;
 }
