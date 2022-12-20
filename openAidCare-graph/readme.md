@@ -1,0 +1,1 @@
+{{ _.host }}/api/measures/friendlyname/T0A
