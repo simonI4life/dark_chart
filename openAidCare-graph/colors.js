@@ -61,17 +61,12 @@ let colorArray3 = [
   {
     backgroundColor: "rgba(255, 172, 100, 0.1)",
     borderColor: "rgba(255, 172, 100, 1)",
-    pointBackgroundColor: "rgba(255, 172, 100, 1)",
+    pointBackgroundColor: "rgba(255, 140, 40, 1)",
   },
   {
-    backgroundColor: "rgba(19, 71, 34, 0.2)",
-    borderColor: "rgba(88, 188, 116, 1)",
-    pointBackgroundColor: "rgba(88, 188, 116, 1)",
-  },
-  {
-    backgroundColor: "rgba(19, 63, 71, 0.2)",
-    borderColor: "rgba(88, 173, 188, 1)",
-    pointBackgroundColor: "rgba(88, 173, 188, 1)",
+    backgroundColor: "rgba(141, 100, 255, 0.1)",
+    borderColor: "rgba(159, 100, 255, 1)",
+    pointBackgroundColor: "rgba(40, 90, 255, 1)",
   },
 ];
 
@@ -85,5 +80,18 @@ let colorArray1bar = [
     backgroundColor: "rgba(83, 142, 160, 1)",
     borderColor: "rgba(88, 140, 188, 1)",
     pointBackgroundColor: "rgba(88, 140, 188, 1)",
+  },
+];
+
+let colorArray1Point = [
+  {
+    backgroundColor: "rgba(124, 87, 155, 0)",
+    borderColor: "rgba(162, 0, 255, 1)",
+    pointBackgroundColor: "rgba(153, 0, 255, 1)",
+  },
+  {
+    backgroundColor: "rgba(83, 142, 160, 1)",
+    borderColor: "rgba(88, 140, 188, 1)",
+    pointBackgroundColor: "rgba(88, 188, 105, 1)",
   },
 ];

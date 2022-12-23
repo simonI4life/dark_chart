@@ -10,7 +10,7 @@ var chart;
 const options = {
   plugins: {
     legend: {
-      display: false,
+      display: true,
     },
   },
   scales: {
@@ -18,7 +18,8 @@ const options = {
       grid: {
         color: "#e1e1e123",
       },
-      suggestedMin: 0,
+      suggestedMin: 12,
+      suggestedMax: 25,
     },
     x: {
       type: "time",
@@ -27,10 +28,10 @@ const options = {
       display: true,
       distribution: "series",
 
-      min: "2022-12-12",
+      min: "2022-12-14",
 
       time: {
-        unit: "year",
+        unit: "hour",
         displayFormats: { year: "yyyy-mm-dd hh:mm:ss" },
       },
 
@@ -41,7 +42,7 @@ const options = {
   },
 };
 
-function createData(jsonData, colors) {
+function createData(jsonData, colors, sensors) {
   // Create an empty salesData object
   let salesData = {
     labels: "Demo",
@@ -58,30 +59,47 @@ function createData(jsonData, colors) {
       borderColor: colors[i].borderColor,
       pointBackgroundColor: colors[i].pointBackgroundColor,
       tension: 0.2,
+      label: sensors[i], // Add the sensor name as the label
     });
   }
   return salesData;
 }
 
-proc = async (msg) => {
-  data = JSON.parse(msg);
-  const measures = data.measures;
+host = "https://openaidcare-api.herokuapp.com";
 
-  // measures.sort((a, b) => a.date - b.date);
+// host = "http://localhost:8087";
 
+createChartFromData(["T2A", "T1B", "T0A"], "chart");
+createChartFromData(["T2A"], "chart1");
+
+async function createChartFromData(sensors, chartid) {
+  // Create an empty result object
   const result = {
-    data: [[]],
+    data: [],
   };
 
-  measures.forEach((item) => {
-    result.data[0].push({
-      x: item.date,
-      y: item.data[1],
+  // Loop through the sensors array
+  for (const sensor of sensors) {
+    // Make an HTTP GET request to retrieve data for the current sensor
+    const response = await fetch(`${host}/api/measures/friendlyname/${sensor}`);
+    const data = await response.json();
+
+    // Create an empty array for the current sensor
+    result.data.push([]);
+
+    // Loop through data.measures and add the data to result.data[i]
+    data.measures.forEach((item) => {
+      result.data[result.data.length - 1].push({
+        x: item.date,
+        y: item.data[1],
+      });
     });
-  });
+  }
 
-  chart = createChart("chart", createData(result, colorArray3), options);
-};
-
-host = "http://localhost:8087";
-httpGetAsync(`${host}/api/measures/friendlyname/T0A`, proc);
+  // Create the chart using the result object and colorArray3
+  chart = createChart(
+    chartid,
+    createData(result, colorArray3, sensors),
+    options
+  );
+}
