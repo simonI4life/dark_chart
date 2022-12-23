@@ -85,13 +85,39 @@ let colorArray1bar = [
 
 let colorArray1Point = [
   {
-    backgroundColor: "rgba(124, 87, 155, 0)",
-    borderColor: "rgba(162, 0, 255, 1)",
-    pointBackgroundColor: "rgba(153, 0, 255, 1)",
+    borderColor: "rgba(119, 0, 255, 0.2)",
   },
   {
-    backgroundColor: "rgba(83, 142, 160, 1)",
-    borderColor: "rgba(88, 140, 188, 1)",
-    pointBackgroundColor: "rgba(88, 188, 105, 1)",
+    borderColor: "rgba(0, 17, 255, 0.2)",
+  },
+  {
+    borderColor: "rgba(0, 204, 255, 0.2)",
+  },
+  {
+    borderColor: "rgba(119, 0, 255, 0.2)",
+  },
+  {
+    borderColor: "rgba(0, 17, 255, 0.2)",
+  },
+  {
+    borderColor: "rgba(0, 204, 255, 0.2)",
+  },
+  {
+    borderColor: "rgba(119, 0, 255, 0.2)",
+  },
+  {
+    borderColor: "rgba(0, 17, 255, 0.2)",
+  },
+  {
+    borderColor: "rgba(0, 204, 255, 0.2)",
+  },
+  {
+    borderColor: "rgba(119, 0, 255, 0.2)",
+  },
+  {
+    borderColor: "rgba(0, 17, 255, 0.2)",
+  },
+  {
+    borderColor: "rgba(0, 204, 255, 0.2)",
   },
 ];

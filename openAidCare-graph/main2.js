@@ -23,7 +23,7 @@ const options = {
 
   elements: {
     point: {
-      radius: 1,
+      radius: 3,
     },
   },
 
@@ -58,7 +58,7 @@ function createData(jsonData, colors, dataLabel) {
       data: jsonData.data[i],
       // backgroundColor: colors[i].backgroundColor,
       borderColor: colors[i].borderColor,
-      pointBackgroundColor: colors[i].pointBackgroundColor,
+      pointBackgroundColor: colors[i].borderColor,
       // tension: 0.2,
       label: dataLabel[i], // Add the sensor name as the label
     });
@@ -68,14 +68,13 @@ function createData(jsonData, colors, dataLabel) {
 
 host = "https://openaidcare-api.herokuapp.com";
 
-function randn_bm() {
+function randn_bm(mean, stddev) {
   let u = 0,
     v = 0;
   while (u === 0) u = Math.random(); //Converting [0,1) to (0,1)
   while (v === 0) v = Math.random();
   let num = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
-  num = num / 10.0 + 0.5; // Translate to 0 -> 1
-  if (num > 1 || num < 0) return randn_bm(); // resample between 0 and 1
+  num = num * stddev + mean;
   return num;
 }
 
@@ -91,30 +90,47 @@ async function createChartFromData(chartid) {
   points = [];
   points1 = [];
 
-  const numberOfPoint = 100;
-
-  for (i = 0; i <= numberOfPoint; i++) {
-    for (j = 0; j <= numberOfPoint; j++) {
-      points.push({ x: i / numberOfPoint, y: j / numberOfPoint });
-    }
-  }
-
-  const numberOfPoint1 = 1000;
-
+  const numberOfPoint1 = 5000;
   for (k = 0; k <= numberOfPoint1; k++) {
-    points1.push({ x: randn_bm(), y: randn_bm() });
+    points1.push({ x: randn_bm(0.5, 0.1), y: randn_bm(0.5, 0.05) });
   }
 
-  // Loop through data.measures and add the data to result.data[i]
-  // result.data.push(points);
-  result.data.push(points1);
+  // Calculate the mean of the x values and y values
+  const meanX =
+    points1.reduce((sum, point) => sum + point.x, 0) / points1.length;
+  const meanY =
+    points1.reduce((sum, point) => sum + point.y, 0) / points1.length;
+
+  n = 10;
+
+  // Create an array to store the point arrays
+  const pointArrays = [];
+  for (let i = 0; i < n; i++) {
+    pointArrays.push([]);
+  }
+
+  // Sort the points by their distance from the mean
+  points1.sort((a, b) => {
+    const distanceA = Math.sqrt((a.x - meanX) ** 2 + (a.y - meanY) ** 2);
+    const distanceB = Math.sqrt((b.x - meanX) ** 2 + (b.y - meanY) ** 2);
+    return distanceA - distanceB;
+  });
+
+  // Divide the sorted array into n equal parts
+  const chunkSize = Math.floor(points1.length / n);
+  for (let i = 0; i < n; i++) {
+    pointArrays[i] = points1.slice(i * chunkSize, (i + 1) * chunkSize);
+  }
+
+  result.data = pointArrays;
+  console.log(result.data);
 
   console.log(result);
 
   // Create the chart using the result object and colorArray3
   chart = createChart(
     chartid,
-    createData(result, colorArray1Point, ["1", "2"]),
+    createData(result, colorArray1Point, ["1", "2", "3"]),
     options
   );
 }
